@@ -1,0 +1,32 @@
+name: 試合データ自動更新
+
+on:
+  schedule:
+    # 毎朝 6:00 JST (21:00 UTC) に実行
+    - cron: '0 21 * * *'
+  workflow_dispatch: # 手動実行も可能
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 試合データを取得
+        run: node scrape-season.js
+      - name: 変更があればコミット
+        run: |
+          git config user.name "bcal-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add games.json
+          if git diff --cached --quiet; then
+            echo "変更なし"
+          else
+            git commit -m "試合データ更新 $(date +%Y-%m-%d)"
+            git push
+          fi
