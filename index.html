@@ -332,7 +332,9 @@ function applyBg() {
   const layer = document.getElementById('bgLayer');
   const shade = document.getElementById('bgShade');
   if (bg && bg.type === 'image') {
-    layer.style.background = `url(${bg.data}) center / cover no-repeat fixed`;
+    // 注意: background-attachment:fixed はiOS Safariで異常拡大するため使わない
+    // （#bgLayer自体が position:fixed なので固定表示は保たれる）
+    layer.style.background = `url(${bg.data}) center / cover no-repeat`;
     shade.style.display = '';
   } else {
     const preset = PRESETS[bg?.id] ?? PRESETS.navy;
