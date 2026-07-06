@@ -482,21 +482,23 @@ const X_OFFICIAL = [
   { label: 'B.LEAGUE公式', url: 'https://x.com/B_LEAGUE' },
   { label: '日本代表(JBA)', url: 'https://x.com/JAPANBASKETBALL' },
 ];
-// クラブはX内検索（正式名称の最新ポスト）に飛ぶ
-const CLUB_FULLNAME = {
-  '北海道': 'レバンガ北海道', '仙台': '仙台89ERS', '秋田': '秋田ノーザンハピネッツ',
-  '茨城': '茨城ロボッツ', '宇都宮': '宇都宮ブレックス', '群馬': '群馬クレインサンダーズ',
-  'A千葉': 'アルティーリ千葉', '千葉J': '千葉ジェッツ', 'A東京': 'アルバルク東京',
-  '東京SR': '東京サンロッカーズ', '川崎': '川崎ブレイブサンダース', '横浜BC': '横浜ビー・コルセアーズ',
-  '富山': '富山グラウジーズ', '信州': '信州ブレイブウォリアーズ', '三遠': '三遠ネオフェニックス',
-  '三河': 'シーホース三河', '名古屋D': '名古屋ダイヤモンドドルフィンズ', '滋賀': '滋賀レイクス',
-  '京都': '京都ハンナリーズ', '大阪': '大阪エヴェッサ', '神戸': '神戸ストークス',
-  '島根': '島根スサノオマジック', '広島': '広島ドラゴンフライズ', '佐賀': '佐賀バルーナーズ',
-  '長崎': '長崎ヴェルカ', '琉球': '琉球ゴールデンキングス',
+// 各クラブの公式Xアカウント（各クラブ公式サイト掲載のリンクから抽出・検証済み）
+const CLUB_X_HANDLE = {
+  '北海道': 'levangakousiki', '仙台': '89ERS_Official', '秋田': 'AKITA_NH',
+  '茨城': 'ibarakirobots', '宇都宮': 'utsunomiyabrex', '群馬': 'gunmacrane3ders',
+  'A千葉': 'altiri_chiba', '千葉J': 'CHIBAJETS', 'A東京': 'alvark_tokyo',
+  '東京SR': 'we_r_sunrockers', '川崎': 'brave_thunders', '横浜BC': 'b_corsairs',
+  '富山': 'toyamagrouses', '信州': 'shinshubw', '三遠': 'NEO_PHOENIX',
+  '三河': 'go_seahorses', '名古屋D': 'nagoyadolphins', '滋賀': 'shigalakestars',
+  '京都': 'kyotohannaryz', '大阪': 'osakaevessa', '神戸': 'STORKS_OFFICIAL',
+  '島根': 'susanoo_m', '広島': 'hiroshimadflies', '佐賀': 'SagaBallooners',
+  '長崎': 'n_velca', '琉球': 'RyukyuKings',
 };
 function clubXUrl(club) {
-  const name = CLUB_FULLNAME[club] ?? club;
-  return `https://x.com/search?q=${encodeURIComponent(name)}&f=live`;
+  const handle = CLUB_X_HANDLE[club];
+  if (handle) return `https://x.com/${handle}`;
+  // 未登録クラブ（昇格クラブ等）は検索にフォールバック
+  return `https://x.com/search?q=${encodeURIComponent(club)}&f=live`;
 }
 function renderXChips() {
   const box = document.getElementById('xChips');
