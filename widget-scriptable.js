@@ -4,7 +4,7 @@
 //
 // 【設定】下の2行だけ自分用に書き換えてください
 // ============================================================
-const DATA_URL = "https://あなたのユーザー名.github.io/bleague-calendar/games.json"; // ←公開後のURLに変更
+const DATA_URL = "https://hibana105-ui.github.io/bleague-calendar/games.json";
 const FAVS = []; // 推しクラブ（例: ["琉球", "川崎"]）金色で上に表示されます
 // ============================================================
 
