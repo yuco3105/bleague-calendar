@@ -184,6 +184,20 @@
     font-size: 12px; line-height: 1.5; padding: 6px 2px;
   }
   .rel-link b { color: var(--text); font-weight: 700; }
+  /* 公式Xリンク */
+  .x-chips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 6px; scrollbar-width: none; }
+  .x-chips::-webkit-scrollbar { display: none; }
+  .x-chip {
+    flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px;
+    text-decoration: none; color: var(--text); cursor: pointer;
+    background: rgba(255, 255, 255, .08); border: 1px solid var(--line); border-radius: 18px;
+    padding: 8px 14px; font-size: 12px; font-weight: 700;
+  }
+  .x-chip .xmark {
+    font-weight: 900; font-size: 13px; font-family: Arial, sans-serif;
+    background: #000; color: #fff; border-radius: 6px;
+    width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center;
+  }
   .modal-bg {
     display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, .6); z-index: 20;
   }
@@ -256,6 +270,8 @@
     <div id="japanNews"></div>
   </section>
   <section id="view-news" class="view">
+    <div class="section-title">公式X（タップでXアプリが開きます）</div>
+    <div class="x-chips" id="xChips"></div>
     <div class="section-title">📰 Bリーグ ニュース</div>
     <div id="newsList"><div class="empty">読み込み中…</div></div>
   </section>
@@ -458,7 +474,62 @@ function renderClubGrid() {
     grid.appendChild(el);
   }
 }
-function render() { renderDateBar(); renderGames(); }
+function render() { renderDateBar(); renderGames(); renderXChips(); }
+
+/* ---------- 公式Xリンク ---------- */
+// 検証済みの公式アカウント（出典: bleague.jp / japanbasketball.jp）
+const X_OFFICIAL = [
+  { label: 'B.LEAGUE公式', url: 'https://x.com/B_LEAGUE' },
+  { label: '日本代表(JBA)', url: 'https://x.com/JAPANBASKETBALL' },
+];
+// クラブはX内検索（正式名称の最新ポスト）に飛ぶ
+const CLUB_FULLNAME = {
+  '北海道': 'レバンガ北海道', '仙台': '仙台89ERS', '秋田': '秋田ノーザンハピネッツ',
+  '茨城': '茨城ロボッツ', '宇都宮': '宇都宮ブレックス', '群馬': '群馬クレインサンダーズ',
+  'A千葉': 'アルティーリ千葉', '千葉J': '千葉ジェッツ', 'A東京': 'アルバルク東京',
+  '東京SR': '東京サンロッカーズ', '川崎': '川崎ブレイブサンダース', '横浜BC': '横浜ビー・コルセアーズ',
+  '富山': '富山グラウジーズ', '信州': '信州ブレイブウォリアーズ', '三遠': '三遠ネオフェニックス',
+  '三河': 'シーホース三河', '名古屋D': '名古屋ダイヤモンドドルフィンズ', '滋賀': '滋賀レイクス',
+  '京都': '京都ハンナリーズ', '大阪': '大阪エヴェッサ', '神戸': '神戸ストークス',
+  '島根': '島根スサノオマジック', '広島': '広島ドラゴンフライズ', '佐賀': '佐賀バルーナーズ',
+  '長崎': '長崎ヴェルカ', '琉球': '琉球ゴールデンキングス',
+};
+function clubXUrl(club) {
+  const name = CLUB_FULLNAME[club] ?? club;
+  return `https://x.com/search?q=${encodeURIComponent(name)}&f=live`;
+}
+function renderXChips() {
+  const box = document.getElementById('xChips');
+  if (!box) return;
+  box.innerHTML = '';
+  for (const o of X_OFFICIAL) {
+    const a = document.createElement('a');
+    a.className = 'x-chip';
+    a.href = o.url;
+    a.target = '_blank';
+    a.innerHTML = `<span class="xmark">𝕏</span>${o.label}`;
+    box.appendChild(a);
+  }
+  for (const c of favs) {
+    const a = document.createElement('a');
+    a.className = 'x-chip';
+    a.href = clubXUrl(c);
+    a.target = '_blank';
+    a.innerHTML = `<span class="xmark">𝕏</span>⭐ ${c}`;
+    box.appendChild(a);
+  }
+  // 推し未設定のときの案内チップ
+  if (!favs.length) {
+    const b = document.createElement('button');
+    b.className = 'x-chip';
+    b.innerHTML = '⭐ 推しクラブを選ぶとここに並びます';
+    b.onclick = () => {
+      renderClubGrid();
+      document.getElementById('favModalBg').classList.add('open');
+    };
+    box.appendChild(b);
+  }
+}
 
 /* ---------- 代表・ニュース ---------- */
 let JAPAN = [], NEWS = { bleague: [], japan: [] };
