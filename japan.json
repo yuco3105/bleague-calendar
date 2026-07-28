@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-06T00:00:00+09:00",
+ "updated": "2026-07-28T00:00:00+09:00",
  "note": "男子日本代表の試合。大会発表があり次第更新（時刻はすべて日本時間）",
  "games": [
   {
@@ -21,27 +21,115 @@
    "comp": "FIBA W杯2027 アジア地区予選 Window3",
    "venue": "韓国・高陽",
    "tv": "BS朝日 / ABEMA / DAZN / TVer",
-   "result": null,
+   "result": "● 79-81",
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
   },
   {
-   "date": "2026-08-27",
-   "time": "",
-   "opponent": "対戦相手 未定",
-   "ha": "",
+   "date": "2026-08-09",
+   "time": "14:00",
+   "opponent": "モンゴル",
+   "ha": "HOME",
+   "comp": "日本生命カップ2026（佐賀大会）",
+   "venue": "SAGAアリーナ",
+   "tv": "テレビ朝日系列ほか",
+   "result": null,
+   "link": "https://akatsukijapan.japanbasketball.jp/"
+  },
+  {
+   "date": "2026-08-10",
+   "time": "18:00",
+   "opponent": "モンゴル",
+   "ha": "HOME",
+   "comp": "日本生命カップ2026（佐賀大会）",
+   "venue": "SAGAアリーナ",
+   "tv": "BS日テレほか",
+   "result": null,
+   "link": "https://akatsukijapan.japanbasketball.jp/"
+  },
+  {
+   "date": "2026-08-15",
+   "time": "19:00",
+   "opponent": "韓国",
+   "ha": "HOME",
+   "comp": "買取大吉カップ2026（東京大会）",
+   "venue": "有明アリーナ",
+   "tv": "日本テレビ系列ほか",
+   "result": null,
+   "link": "https://akatsukijapan.japanbasketball.jp/"
+  },
+  {
+   "date": "2026-08-16",
+   "time": "19:05",
+   "opponent": "韓国",
+   "ha": "HOME",
+   "comp": "SoftBank CUP 2026（東京大会）",
+   "venue": "有明アリーナ",
+   "tv": "テレビ朝日系列ほか",
+   "result": null,
+   "link": "https://akatsukijapan.japanbasketball.jp/"
+  },
+  {
+   "date": "2026-08-28",
+   "time": "02:00",
+   "opponent": "サウジアラビア",
+   "ha": "AWAY",
    "comp": "FIBA W杯2027 アジア地区予選 2次ラウンド Window4",
-   "venue": "組み合わせ発表待ち",
+   "venue": "サウジアラビア・ジェッダ King Abdullah Sports City ※現地8/27(木)20:00",
+   "tv": "未発表",
+   "result": null,
+   "link": "https://www.fiba.basketball/ja/events/fiba-basketball-world-cup-2027-asian-qualifiers/games/126973-KSA-JPN"
+  },
+  {
+   "date": "2026-08-31",
+   "time": "19:10",
+   "opponent": "カタール",
+   "ha": "HOME",
+   "comp": "FIBA W杯2027 アジア地区予選 2次ラウンド Window4",
+   "venue": "TOYOTA ARENA TOKYO（東京・青海）※一般発売 8/1(土)18:00〜",
+   "tv": "未発表",
+   "result": null,
+   "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/news/472/"
+  },
+  {
+   "date": "2026-11-26",
+   "time": "",
+   "opponent": "レバノン",
+   "ha": "AWAY",
+   "comp": "FIBA W杯2027 アジア地区予選 2次ラウンド Window5",
+   "venue": "会場未発表",
    "tv": "",
    "result": null,
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
   },
   {
-   "date": "2026-08-31",
+   "date": "2026-11-29",
    "time": "",
-   "opponent": "対戦相手 未定",
-   "ha": "",
-   "comp": "FIBA W杯2027 アジア地区予選 2次ラウンド Window4",
-   "venue": "組み合わせ発表待ち",
+   "opponent": "カタール",
+   "ha": "AWAY",
+   "comp": "FIBA W杯2027 アジア地区予選 2次ラウンド Window5",
+   "venue": "会場未発表",
+   "tv": "",
+   "result": null,
+   "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
+  },
+  {
+   "date": "2027-02-26",
+   "time": "",
+   "opponent": "サウジアラビア",
+   "ha": "HOME",
+   "comp": "FIBA W杯2027 アジア地区予選 2次ラウンド Window6",
+   "venue": "会場未発表",
+   "tv": "",
+   "result": null,
+   "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
+  },
+  {
+   "date": "2027-03-01",
+   "time": "",
+   "opponent": "レバノン",
+   "ha": "HOME",
+   "comp": "FIBA W杯2027 アジア地区予選 2次ラウンド Window6",
+   "venue": "会場未発表",
    "tv": "",
    "result": null,
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
