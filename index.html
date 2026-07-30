@@ -150,6 +150,15 @@
     background: rgba(80, 220, 140, .16); color: #7dedb0;
     border-radius: 8px; padding: 2px 10px;
   }
+  .result-badge.lose { background: rgba(255, 90, 110, .16); color: #ff9aa8; }
+  /* 終わったのに結果が入っていない試合を目立たせる（強化試合は自動取得できないため手動更新が必要） */
+  .card.pending { border-color: rgba(255, 90, 110, .6); background: rgba(255, 90, 110, .07); }
+  .pending-badge {
+    display: inline-block; font-size: 11px; font-weight: 900; letter-spacing: .04em;
+    background: rgba(255, 90, 110, .2); color: #ff9aa8;
+    border: 1px solid rgba(255, 90, 110, .5);
+    border-radius: 8px; padding: 2px 9px;
+  }
   .today-badge {
     display: inline-block; font-size: 11px; font-weight: 900;
     background: linear-gradient(150deg, #ffc94d, #ff9d00); color: #1a1400;
@@ -562,7 +571,9 @@ function renderJapan() {
     const f = fmtDate(g.date);
     const isToday = g.date === t;
     const a = document.createElement('a');
-    a.className = 'card' + (isToday ? ' fav' : '');
+    // 日付が過ぎているのに結果が入っていない＝更新漏れ。赤く出して気づけるようにする
+    const isPending = !g.result && g.date < t;
+    a.className = 'card' + (isToday ? ' fav' : '') + (isPending ? ' pending' : '');
     a.href = g.link || 'https://akatsukijapan.japanbasketball.jp/';
     a.target = '_blank';
     const haText = g.ha === 'AWAY' ? 'アウェー' : g.ha === 'HOME' ? 'ホーム' : '';
@@ -570,7 +581,9 @@ function renderJapan() {
       <div class="comp-label">${g.comp}</div>
       <div class="top">
         <span class="jdate">${f.m}/${f.d}<small>(${f.w}) ${g.time ? g.time + ' TIP OFF' : '時刻未定'}</small>${isToday ? '<span class="today-badge">今日</span>' : ''}</span>
-        ${g.result ? `<span class="result-badge">${g.result}</span>` : ''}
+        ${g.result
+          ? `<span class="result-badge${g.result.startsWith('●') ? ' lose' : ''}">${g.result}</span>`
+          : isPending ? '<span class="pending-badge">結果未入力</span>' : ''}
       </div>
       <div class="match">
         <span class="team home">日本</span>

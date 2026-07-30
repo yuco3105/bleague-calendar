@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-28T00:00:00+09:00",
- "note": "男子日本代表の試合。大会発表があり次第更新（時刻はすべて日本時間）",
+ "updated": "2026-07-30T10:50:45+09:00",
+ "note": "男子日本代表の試合。W杯予選(fibaId付き)の結果はGitHub Actionsが自動取得。強化試合は手動更新",
  "games": [
   {
    "date": "2026-07-03",
@@ -11,6 +11,7 @@
    "venue": "中国・瀋陽",
    "tv": "BS日テレ / DAZN / TVer",
    "result": "○ 92-73",
+   "fibaId": "126926-CHN-JPN",
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
   },
   {
@@ -22,6 +23,7 @@
    "venue": "韓国・高陽",
    "tv": "BS朝日 / ABEMA / DAZN / TVer",
    "result": "● 79-81",
+   "fibaId": "126923-KOR-JPN",
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
   },
   {
@@ -77,6 +79,7 @@
    "venue": "サウジアラビア・ジェッダ King Abdullah Sports City ※現地8/27(木)20:00",
    "tv": "未発表",
    "result": null,
+   "fibaId": "126973-KSA-JPN",
    "link": "https://www.fiba.basketball/ja/events/fiba-basketball-world-cup-2027-asian-qualifiers/games/126973-KSA-JPN"
   },
   {
@@ -88,6 +91,7 @@
    "venue": "TOYOTA ARENA TOKYO（東京・青海）※一般発売 8/1(土)18:00〜",
    "tv": "未発表",
    "result": null,
+   "fibaId": "126960-JPN-QAT",
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/news/472/"
   },
   {
@@ -99,6 +103,7 @@
    "venue": "会場未発表",
    "tv": "",
    "result": null,
+   "fibaId": "126961-LBN-JPN",
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
   },
   {
@@ -110,6 +115,7 @@
    "venue": "会場未発表",
    "tv": "",
    "result": null,
+   "fibaId": "126965-QAT-JPN",
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
   },
   {
@@ -121,6 +127,7 @@
    "venue": "会場未発表",
    "tv": "",
    "result": null,
+   "fibaId": "126969-JPN-KSA",
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
   },
   {
@@ -132,6 +139,7 @@
    "venue": "会場未発表",
    "tv": "",
    "result": null,
+   "fibaId": "126974-JPN-LBN",
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
   }
  ]
