@@ -3,14 +3,17 @@
 // ホーム画面に「今日のBリーグ全試合」を表示します
 //
 // 【設定】下の2行だけ自分用に書き換えてください
+// （読み込み用ショートカットから使う場合は globalThis.BCAL_FAVS で指定できます）
 // ============================================================
-const DATA_URL = "https://yuco3105.github.io/bleague-calendar/games.json";
-const FAVS = []; // 推しクラブ（例: ["琉球", "川崎"]）金色で上に表示されます
+const BASE_URL = "https://yuco3105.github.io/bleague-calendar/";
+const FAVS = globalThis.BCAL_FAVS ?? []; // 推しクラブ（例: ["琉球", "川崎"]）金色で上に表示されます
 // ============================================================
 
+const DATA_URL = BASE_URL + "games.json";
 const GOLD = new Color("#ffb61e");
 const WHITE = new Color("#eef1f8");
 const GRAY = new Color("#9aa2b8");
+const BLUE = new Color("#8ec8ff");
 const BG = new Color("#0d1220");
 const WEEK = ["日", "月", "火", "水", "木", "金", "土"];
 
@@ -18,10 +21,20 @@ function ymd(d) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-// データ取得
-const req = new Request(DATA_URL);
-const data = await req.loadJSON();
-const games = data.games ?? data;
+// データ取得（?t= はキャッシュ避け）
+async function loadGames(file) {
+  const data = await new Request(BASE_URL + file + "?t=" + Date.now()).loadJSON();
+  return data.games ?? data;
+}
+const season = await loadGames("games.json");
+// 開幕前のプレシーズンゲーム。取れなくてもリーグ戦だけで動くようにする
+let pre = [];
+try {
+  pre = await loadGames("preseason.json");
+} catch (e) {
+  pre = [];
+}
+const games = [...pre, ...season];
 
 // 今日の試合（なければ次の試合日）
 const today = ymd(new Date());
@@ -50,9 +63,10 @@ dayGames.sort((a, b) => {
 const w = new ListWidget();
 w.backgroundColor = BG;
 w.setPadding(14, 16, 12, 16);
-w.url = DATA_URL.replace("games.json", ""); // タップでアプリを開く
+w.url = BASE_URL; // タップでアプリを開く
 
-const head = w.addText(`🏀 ${title}  ${dayGames.length}試合`);
+const allPre = dayGames.length > 0 && dayGames.every((g) => g.pre);
+const head = w.addText(`🏀 ${title}  ${dayGames.length}試合${allPre ? "（プレシーズン）" : ""}`);
 head.font = Font.heavySystemFont(13);
 head.textColor = GOLD;
 w.addSpacer(7);
@@ -66,9 +80,10 @@ for (const g of dayGames.slice(0, maxRows)) {
   row.centerAlignContent();
   const time = row.addText(g.time);
   time.font = Font.mediumSystemFont(11);
-  time.textColor = GRAY;
+  time.textColor = g.pre ? BLUE : GRAY; // プレシーズンは水色
   row.addSpacer(8);
-  const txt = row.addText(`${isFav ? "⭐" : ""}${g.home} - ${g.away}`);
+  // 📺 はバスケットLIVEなどの配信予定あり
+  const txt = row.addText(`${isFav ? "⭐" : ""}${g.home} - ${g.away}${g.stream ? " 📺" : ""}`);
   txt.font = isFav ? Font.boldSystemFont(13) : Font.mediumSystemFont(13);
   txt.textColor = isFav ? GOLD : WHITE;
   txt.lineLimit = 1;

@@ -12,7 +12,7 @@ Bリーグ（B.PREMIER）の「その日の全試合」がひと目でわかる�
 - 各クラブの公式Xアカウント・ニュースサイトへのリンク
 - 試合カードをタップすると公式の試合詳細ページへ
 - ホーム画面に追加すればアプリのように使えます（PWA）
-- iPhoneウィジェット対応（`widget-scriptable.js` をScriptableアプリで使用）
+- iPhoneウィジェット対応（Scriptableアプリに `widget-loader.js` を貼ると、以後は `widget-scriptable.js` の最新版を毎回読み込むので貼り直し不要）
 
 ## 仕組み
 
