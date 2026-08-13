@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-13T05:14:36.824Z",
+ "updated": "2026-08-13T06:01:16.453Z",
  "note": "B.LEAGUE PRE-SEASON GAME 2026（開幕前の練習試合）。各クラブの公式発表をまとめた記事から自動取得",
  "source": "https://note.com/ballbeats_jp/n/n1646da7ae95e",
  "count": 80,
@@ -14,7 +14,9 @@
    "arena": "GLION ARENA KOBE",
    "event": "KOBE RISING -2026-",
    "link": "https://www.storks.jp/news/detail/id=21936",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110430"
   },
   {
    "date": "2026-08-22",
@@ -26,7 +28,9 @@
    "arena": "GLION ARENA KOBE",
    "event": "KOBE RISING -2026-",
    "link": "https://www.storks.jp/news/detail/id=21936",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110431"
   },
   {
    "date": "2026-08-23",
@@ -38,7 +42,9 @@
    "arena": "GLION ARENA KOBE",
    "event": "KOBE RISING -2026-",
    "link": "https://www.storks.jp/news/detail/id=21936",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110432"
   },
   {
    "date": "2026-08-29",
@@ -182,7 +188,9 @@
    "arena": "ハピネスアリーナ",
    "event": "B.LEAGUE GLOBAL INVITATIONAL 2026",
    "link": "https://www.velca.jp/news/detail/id=50871",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110434"
   },
   {
    "date": "2026-09-04",
@@ -446,7 +454,9 @@
    "arena": "日環アリーナ栃木",
    "event": "",
    "link": "https://www.utsunomiyabrex.com/lp/game_20260905_20260906/",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110439"
   },
   {
    "date": "2026-09-06",
@@ -458,7 +468,9 @@
    "arena": "ハピネスアリーナ",
    "event": "B.LEAGUE GLOBAL INVITATIONAL 2026",
    "link": "https://www.velca.jp/news/detail/id=50871",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110440"
   },
   {
    "date": "2026-09-06",
@@ -482,7 +494,9 @@
    "arena": "横浜BUNTAI",
    "event": "",
    "link": "https://b-corsairs.com/news/ticket_20260714_0/",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110441"
   },
   {
    "date": "2026-09-07",
@@ -506,7 +520,9 @@
    "arena": "横浜BUNTAI",
    "event": "",
    "link": "https://b-corsairs.com/news/ticket_20260714_0/",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110442"
   },
   {
    "date": "2026-09-08",
@@ -702,7 +718,7 @@
   },
   {
    "date": "2026-09-12",
-   "time": "15:05",
+   "time": "15:10",
    "home": "富山",
    "away": "金沢",
    "homeLeague": "B.PREMIER-東",
@@ -710,7 +726,9 @@
    "arena": "YKK AP ARENA",
    "event": "",
    "link": "https://grouses.jp/news/detail/id=24420",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110446"
   },
   {
    "date": "2026-09-12",
@@ -722,7 +740,9 @@
    "arena": "アダストリアみとアリーナ",
    "event": "ホリイフードサービス presents",
    "link": "https://www.ibarakirobots.win/lp/20260912_20260913/",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110445"
   },
   {
    "date": "2026-09-12",

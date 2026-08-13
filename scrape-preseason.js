@@ -15,6 +15,8 @@ const fs = require('fs');
 const NOTE_API = 'https://note.com/api/v3/notes/n1646da7ae95e';
 const ICS_URL = 'https://calendar.google.com/calendar/ical/f32d559a4c8dcce419a2289887f581cc8886792d4dd48a1ca03e40f56292ac82%40group.calendar.google.com/public/basic.ics';
 const SOURCE = 'https://note.com/ballbeats_jp/n/n1646da7ae95e';
+// バスケットLIVEの配信予定（B.LEAGUE公式。決まり次第この記事に追記されていく）
+const BASKETLIVE_NEWS = 'https://www.bleague.jp/news_detail/id=616751';
 const SEASON_START = '2026-09-22'; // リーグ戦の開幕日。これ以降はgames.jsonの担当
 const RANGE_START = '2026-08-01';
 
@@ -175,6 +177,33 @@ async function fromIcal() {
   return games;
 }
 
+// バスケットLIVEの配信予定（B.LEAGUE公式のお知らせページ。表が生HTMLに入っている）
+async function fromBasketLive() {
+  const res = await fetch(BASKETLIVE_NEWS, { headers: { 'User-Agent': 'bcal-preseason/1.0' } });
+  if (!res.ok) throw new Error(`配信予定の取得に失敗: HTTP ${res.status}`);
+  const html = await res.text();
+  const table = html.match(/<table[^>]*>([\s\S]*?)<\/table>/i);
+  if (!table) return [];
+
+  const rows = [];
+  for (const [, tr] of table[1].matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)) {
+    const cells = [...tr.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map((m) => m[1]);
+    if (cells.length < 5) continue; // 見出し行
+    const md = stripTags(cells[0]).match(/(\d{1,2})\/(\d{1,2})/);
+    const time = stripTags(cells[1]).match(/\d{1,2}:\d{2}/);
+    const url = (cells[4].match(/href="([^"]+)"/) ?? [])[1] ?? '';
+    if (!md || !time || !url) continue;
+    rows.push({
+      date: `2026-${String(md[1]).padStart(2, '0')}-${String(md[2]).padStart(2, '0')}`,
+      time: time[0],
+      // 「【KOBE RISING】 神戸 vs 千葉J」「横浜BCvsA東京」など表記ゆれがあるので文字列のまま持つ
+      card: stripTags(cells[2]).replace(/【[^】]*】/g, '').replace(/\s+/g, ''),
+      url,
+    });
+  }
+  return rows;
+}
+
 (async () => {
   const [noteGames, icalGames] = await Promise.all([fromNote(), fromIcal()]);
   if (!noteGames.length && !icalGames.length) {
@@ -196,6 +225,34 @@ async function fromIcal() {
     }
   }
   const games = [...noteGames, ...extra];
+  games.sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+
+  // バスケットLIVEの配信予定をひもづける（落ちても日程だけは出せるようにする）
+  let live = [];
+  try {
+    live = await fromBasketLive();
+  } catch (e) {
+    console.log('配信予定は取得できず:', e.message);
+  }
+  // 配信予定の「カード」欄は正式名称のこともあるので、略称とその元の名前の両方で照合する
+  const inCard = (card, name) => {
+    const plain = name.replace(/[\u{1F1E6}-\u{1F1FF}]/gu, ''); // 国旗絵文字を外す
+    if (card.includes(plain)) return true;
+    return Object.entries(RENAME).some(([full, short]) => short === name && card.includes(full.replace(/\s+/g, '')));
+  };
+  for (const row of live) {
+    const hit = games.find((g) => g.date === row.date
+      && inCard(row.card, g.home) && inCard(row.card, g.away)
+      && Math.abs(toMin(g.time) - toMin(row.time)) <= 60);
+    if (!hit) { console.log('配信予定に該当試合なし:', row.date, row.time, row.card); continue; }
+    hit.tv = 'バスケットLIVE';
+    hit.stream = row.url;
+    if (hit.time !== row.time) {
+      // リーグ公式の告知なので開始時刻はこちらを採用する
+      console.log(`開始時刻を更新: ${hit.date} ${hit.home} vs ${hit.away} ${hit.time} → ${row.time}`);
+      hit.time = row.time;
+    }
+  }
   games.sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
 
   const before = fs.existsSync('preseason.json')

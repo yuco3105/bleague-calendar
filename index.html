@@ -129,6 +129,11 @@
     background: rgba(90, 170, 255, .22); border: 1px solid rgba(120, 200, 255, .55);
     border-radius: 6px; padding: 0 7px; color: #cfe9ff;
   }
+  .live-tag {
+    font-size: 10px; font-weight: 900; letter-spacing: .02em;
+    background: rgba(80, 220, 140, .18); border: 1px solid rgba(80, 220, 140, .5);
+    border-radius: 6px; padding: 1px 7px; color: #8ff0bd;
+  }
   .team-league { display: block; font-size: 9px; font-weight: 700; color: var(--sub); margin-top: 3px; }
   .pre-note { color: #a5d8ff; font-size: 12px; margin-left: 4px; }
   .date-chip.pre-day .n { color: #a5d8ff; }
@@ -485,9 +490,9 @@ function renderGames() {
     const isFav = favs.includes(g.home) || favs.includes(g.away);
     const a = document.createElement('a');
     a.className = 'card' + (isFav ? ' fav' : '') + (g.pre ? ' pre' : '');
-    // プレシーズンはリーグの試合ページが無いので、告知した各クラブの公式ページへ飛ばす
+    // プレシーズンはリーグの試合ページが無いので、配信ページ→告知した各クラブの公式ページの順で飛ばす
     a.href = g.pre
-      ? (g.link || 'https://www.bleague.jp/')
+      ? (g.stream || g.link || 'https://www.bleague.jp/')
       : `https://www.bleague.jp/game_detail/?ScheduleKey=${g.id}&tab=1`;
     a.target = '_blank';
     const center = g.score
@@ -495,14 +500,14 @@ function renderGames() {
       : `<span class="vs">HOME vs AWAY</span>`;
     const league = (s) => (s ? `<span class="team-league">${s}</span>` : '');
     a.innerHTML = `
-      ${g.pre ? `<div class="pre-label"><span class="pre-tag">PRE</span>${g.event || 'プレシーズンゲーム'}</div>` : ''}
+      ${g.pre ? `<div class="pre-label"><span class="pre-tag">PRE</span>${g.tv ? `<span class="live-tag">📺 ${g.tv}</span>` : ''}${g.event || 'プレシーズンゲーム'}</div>` : ''}
       <div class="top"><span class="time">${g.time}<small>TIP OFF</small></span>${isFav ? '<span class="fav-mark">⭐ 推し</span>' : ''}</div>
       <div class="match">
         <span class="team home${favs.includes(g.home) ? ' faved' : ''}">${g.home}${g.pre ? league(g.homeLeague) : ''}</span>
         ${center}
         <span class="team away${favs.includes(g.away) ? ' faved' : ''}">${g.away}${g.pre ? league(g.awayLeague) : ''}</span>
       </div>
-      <div class="arena">📍 ${g.arena}</div>`;
+      <div class="arena">📍 ${g.arena}${g.stream ? '<br>📺 タップで配信ページへ' : ''}</div>`;
     list.appendChild(a);
   }
 }
