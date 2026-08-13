@@ -1,0 +1,32 @@
+name: プレシーズンゲームの日程を自動取得
+
+on:
+  schedule:
+    # 毎朝 6:15 JST (21:15 UTC)。日程更新(6:00)・代表(6:30)とずらして実行
+    - cron: '15 21 * * *'
+  workflow_dispatch: # 手動実行も可能
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: プレシーズンの日程を取得
+        run: node scrape-preseason.js
+      - name: 変更があればコミット
+        run: |
+          git config user.name "bcal-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add preseason.json
+          if git diff --cached --quiet; then
+            echo "変更なし"
+          else
+            git commit -m "プレシーズン日程を自動更新 $(date +%Y-%m-%d)"
+            git push
+          fi

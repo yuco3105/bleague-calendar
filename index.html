@@ -117,6 +117,22 @@
   .vs { flex: 0 0 auto; font-size: 9px; font-weight: 700; letter-spacing: .1em; color: var(--sub); border: 1px solid var(--line); border-radius: 8px; padding: 3px 7px; }
   .score { flex: 0 0 auto; font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: .06em; }
   .arena { margin-top: 8px; font-size: 12px; color: var(--sub); }
+  /* プレシーズンゲーム（開幕前の練習試合・リーグ公式日程には含まれない手動データ） */
+  .card.pre { border-color: rgba(120, 200, 255, .45); background: rgba(90, 170, 255, .09); }
+  .card.pre.fav { background: var(--glass-fav); border-color: rgba(255, 182, 30, .55); }
+  .pre-label {
+    display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+    font-size: 10px; color: #a5d8ff; letter-spacing: .04em; margin-bottom: 7px;
+  }
+  .pre-tag {
+    font-family: "Bebas Neue", sans-serif; font-size: 13px; letter-spacing: .12em;
+    background: rgba(90, 170, 255, .22); border: 1px solid rgba(120, 200, 255, .55);
+    border-radius: 6px; padding: 0 7px; color: #cfe9ff;
+  }
+  .team-league { display: block; font-size: 9px; font-weight: 700; color: var(--sub); margin-top: 3px; }
+  .pre-note { color: #a5d8ff; font-size: 12px; margin-left: 4px; }
+  .date-chip.pre-day .n { color: #a5d8ff; }
+  .date-chip.pre-day.active .n { color: #1a1400; }
   .empty { text-align: center; color: var(--sub); padding: 60px 0; font-size: 14px; }
   /* 画面切り替え */
   .view { display: none; }
@@ -338,7 +354,7 @@ const PRESETS = {
   court:  { label: 'コート',     css: 'linear-gradient(160deg, #2e1808, #8a4312 55%, #1a0d04)' },
   arena:  { label: 'アリーナ',   css: 'linear-gradient(160deg, #001c30, #005c7a 60%, #001322)' },
 };
-let GAMES = [], dates = [], clubs = [];
+let GAMES = [], dates = [], clubs = [], PRE = [];
 let favs = JSON.parse(localStorage.getItem('bcal_favs') || '[]');
 let current = null;
 
@@ -429,10 +445,13 @@ function renderDateBar() {
   let activeEl = null;
   for (const d of dates) {
     const f = fmtDate(d);
-    const n = GAMES.filter((g) => g.date === d).length;
+    const dayGames = GAMES.filter((g) => g.date === d);
+    const n = dayGames.length;
+    // 開幕前のプレシーズンだけの日は水色で「PRE」と出して本番と区別する
+    const allPre = n > 0 && dayGames.every((g) => g.pre);
     const el = document.createElement('div');
-    el.className = 'date-chip' + (d === current ? ' active' : '') + (d === t ? ' today' : '');
-    el.innerHTML = `<span class="d">${f.m}/${f.d}</span><span class="w">(${f.w})</span><span class="n">${n}試合</span>`;
+    el.className = 'date-chip' + (d === current ? ' active' : '') + (d === t ? ' today' : '') + (allPre ? ' pre-day' : '');
+    el.innerHTML = `<span class="d">${f.m}/${f.d}</span><span class="w">(${f.w})</span><span class="n">${allPre ? 'PRE ' : ''}${n}試合</span>`;
     el.onclick = () => { current = d; render(); };
     bar.appendChild(el);
     if (d === current) activeEl = el;
@@ -453,8 +472,10 @@ function renderGames() {
       if (af !== bf) return af ? -1 : 1;
       return a.time.localeCompare(b.time);
     });
+  const preCount = games.filter((g) => g.pre).length;
   document.getElementById('dayHead').innerHTML =
-    `<strong>${f.m}月${f.d}日(${f.w})</strong> ${games.length}試合`;
+    `<strong>${f.m}月${f.d}日(${f.w})</strong> ${games.length}試合`
+    + (preCount ? `<span class="pre-note">（うちプレシーズン ${preCount}）</span>` : '');
   list.innerHTML = '';
   if (!games.length) {
     list.innerHTML = '<div class="empty">この日の試合はありません</div>';
@@ -463,18 +484,23 @@ function renderGames() {
   for (const g of games) {
     const isFav = favs.includes(g.home) || favs.includes(g.away);
     const a = document.createElement('a');
-    a.className = 'card' + (isFav ? ' fav' : '');
-    a.href = `https://www.bleague.jp/game_detail/?ScheduleKey=${g.id}&tab=1`;
+    a.className = 'card' + (isFav ? ' fav' : '') + (g.pre ? ' pre' : '');
+    // プレシーズンはリーグの試合ページが無いので、告知した各クラブの公式ページへ飛ばす
+    a.href = g.pre
+      ? (g.link || 'https://www.bleague.jp/')
+      : `https://www.bleague.jp/game_detail/?ScheduleKey=${g.id}&tab=1`;
     a.target = '_blank';
     const center = g.score
       ? `<span class="score">${g.score}</span>`
       : `<span class="vs">HOME vs AWAY</span>`;
+    const league = (s) => (s ? `<span class="team-league">${s}</span>` : '');
     a.innerHTML = `
+      ${g.pre ? `<div class="pre-label"><span class="pre-tag">PRE</span>${g.event || 'プレシーズンゲーム'}</div>` : ''}
       <div class="top"><span class="time">${g.time}<small>TIP OFF</small></span>${isFav ? '<span class="fav-mark">⭐ 推し</span>' : ''}</div>
       <div class="match">
-        <span class="team home${favs.includes(g.home) ? ' faved' : ''}">${g.home}</span>
+        <span class="team home${favs.includes(g.home) ? ' faved' : ''}">${g.home}${g.pre ? league(g.homeLeague) : ''}</span>
         ${center}
-        <span class="team away${favs.includes(g.away) ? ' faved' : ''}">${g.away}</span>
+        <span class="team away${favs.includes(g.away) ? ' faved' : ''}">${g.away}${g.pre ? league(g.awayLeague) : ''}</span>
       </div>
       <div class="arena">📍 ${g.arena}</div>`;
     list.appendChild(a);
@@ -649,12 +675,18 @@ async function fetchJson(url, tries = 3) {
   }
 }
 (async () => {
+  // プレシーズンゲーム（手動データ。読めなくてもリーグ戦の日程は表示する）
+  try {
+    PRE = (await fetchJson('preseason.json')).games ?? [];
+  } catch (e) { PRE = []; }
   // Bリーグ日程
   try {
     const data = await fetchJson('games.json');
-    GAMES = data.games ?? data;
+    const season = data.games ?? data;
+    GAMES = [...PRE, ...season];
     dates = [...new Set(GAMES.map((g) => g.date))].sort();
-    clubs = [...new Set(GAMES.flatMap((g) => [g.home, g.away]))].sort((a, b) => a.localeCompare(b, 'ja'));
+    // 推しクラブに出すのはリーグ戦の26クラブだけ（プレシーズンにはB.ONEや海外チームも出るため）
+    clubs = [...new Set(season.flatMap((g) => [g.home, g.away]))].sort((a, b) => a.localeCompare(b, 'ja'));
     current = pickDefaultDate();
     if (data.updated) {
       const u = new Date(data.updated);
