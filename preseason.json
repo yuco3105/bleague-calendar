@@ -1,8 +1,8 @@
 {
- "updated": "2026-08-18T21:38:37.024Z",
+ "updated": "2026-08-19T21:41:49.175Z",
  "note": "B.LEAGUE PRE-SEASON GAME 2026（開幕前の練習試合）。各クラブの公式発表をまとめた記事から自動取得",
  "source": "https://note.com/ballbeats_jp/n/n1646da7ae95e",
- "count": 80,
+ "count": 82,
  "games": [
   {
    "date": "2026-08-22",
@@ -30,7 +30,7 @@
    "link": "https://www.storks.jp/news/detail/id=21936",
    "pre": true,
    "tv": "バスケットLIVE",
-   "stream": "https://basketball.mb.softbank.jp/lives/110431"
+   "stream": "http://https://basketball.mb.softbank.jp/lives/110431"
   },
   {
    "date": "2026-08-23",
@@ -156,6 +156,20 @@
   },
   {
    "date": "2026-09-02",
+   "time": "19:00",
+   "home": "三河",
+   "away": "京都",
+   "homeLeague": "B.PREMIER-西",
+   "awayLeague": "B.PREMIER-西",
+   "arena": "刈谷市体育館",
+   "event": "",
+   "link": "https://go-seahorses.jp/news/detail/id=27625",
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110433"
+  },
+  {
+   "date": "2026-09-02",
    "time": "19:05",
    "home": "A東京",
    "away": "横浜EX",
@@ -190,7 +204,7 @@
    "link": "https://www.velca.jp/news/detail/id=50871",
    "pre": true,
    "tv": "バスケットLIVE",
-   "stream": "https://basketball.mb.softbank.jp/lives/110434"
+   "stream": "http://https://basketball.mb.softbank.jp/lives/110434"
   },
   {
    "date": "2026-09-04",
@@ -242,7 +256,7 @@
   },
   {
    "date": "2026-09-05",
-   "time": "14:00",
+   "time": "14:05",
    "home": "奈良",
    "away": "愛媛",
    "homeLeague": "B.ONE-西",
@@ -250,7 +264,9 @@
    "arena": "ロートアリーナ奈良",
    "event": "",
    "link": "https://bambitious.jp/news/detail/id=21957",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110435"
   },
   {
    "date": "2026-09-05",
@@ -290,7 +306,7 @@
   },
   {
    "date": "2026-09-05",
-   "time": "14:05",
+   "time": "14:10",
    "home": "熊本",
    "away": "東京SR",
    "homeLeague": "B.ONE-南",
@@ -298,7 +314,9 @@
    "arena": "熊本県立総合体育館",
    "event": "",
    "link": "https://www.volters.jp/news/detail/id=19911",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110436"
   },
   {
    "date": "2026-09-05",
@@ -574,6 +592,20 @@
   },
   {
    "date": "2026-09-10",
+   "time": "14:00",
+   "home": "信州",
+   "away": "水原KT",
+   "homeLeague": "B.PREMIER-西",
+   "awayLeague": "",
+   "arena": "ホワイトリング",
+   "event": "",
+   "link": "https://basketball.mb.softbank.jp/lives/110443",
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110447"
+  },
+  {
+   "date": "2026-09-10",
    "time": "19:35",
    "home": "琉球",
    "away": "パース🇦🇺",
@@ -719,20 +751,6 @@
   {
    "date": "2026-09-12",
    "time": "15:10",
-   "home": "富山",
-   "away": "金沢",
-   "homeLeague": "B.PREMIER-東",
-   "awayLeague": "B.ONE-中",
-   "arena": "YKK AP ARENA",
-   "event": "",
-   "link": "https://grouses.jp/news/detail/id=24420",
-   "pre": true,
-   "tv": "バスケットLIVE",
-   "stream": "https://basketball.mb.softbank.jp/lives/110446"
-  },
-  {
-   "date": "2026-09-12",
-   "time": "15:10",
    "home": "茨城",
    "away": "東京SR",
    "homeLeague": "B.PREMIER-東",
@@ -755,6 +773,20 @@
    "event": "小山工務店 presents PRE-SEASON GAME in KOSHIGAYA 2026",
    "link": "https://www.koshigaya-alphas.com/news/preseasongame_inkoshigaya2026_info",
    "pre": true
+  },
+  {
+   "date": "2026-09-12",
+   "time": "15:10",
+   "home": "富山",
+   "away": "金沢",
+   "homeLeague": "B.PREMIER-東",
+   "awayLeague": "B.ONE-中",
+   "arena": "YKK AP ARENA",
+   "event": "",
+   "link": "https://grouses.jp/news/detail/id=24420",
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110446"
   },
   {
    "date": "2026-09-12",
