@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-25T21:44:48.389Z",
+ "updated": "2026-08-27T00:48:14.536Z",
  "note": "B.LEAGUE PRE-SEASON GAME 2026（開幕前の練習試合）。各クラブの公式発表をまとめた記事から自動取得",
  "source": "https://note.com/ballbeats_jp/n/n1646da7ae95e",
  "count": 82,
@@ -302,7 +302,9 @@
    "arena": "セーレン・ドリームアリーナ",
    "event": "",
    "link": "https://www.fukuiblowinds.com/news/detail/id=51402",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110437"
   },
   {
    "date": "2026-09-05",
@@ -448,7 +450,9 @@
    "arena": "セーレン・ドリームアリーナ",
    "event": "",
    "link": "https://www.fukuiblowinds.com/news/detail/id=51402",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110438"
   },
   {
    "date": "2026-09-06",
