@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-13T14:08:36+09:00",
+ "updated": "2026-08-29T12:13:50+09:00",
  "note": "男子日本代表の試合。W杯予選(fibaId付き)の結果はGitHub Actionsが自動取得。強化試合は手動更新",
  "games": [
   {
@@ -78,7 +78,7 @@
    "comp": "FIBA W杯2027 アジア地区予選 2次ラウンド Window4",
    "venue": "サウジアラビア・ジェッダ King Abdullah Sports City ※現地8/27(木)20:00",
    "tv": "テレビ朝日系列 / ABEMA / DAZN / TVer",
-   "result": null,
+   "result": "○ 106-78",
    "fibaId": "126973-KSA-JPN",
    "link": "https://www.fiba.basketball/ja/events/fiba-basketball-world-cup-2027-asian-qualifiers/games/126973-KSA-JPN"
   },
