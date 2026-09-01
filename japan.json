@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-29T12:13:50+09:00",
+ "updated": "2026-09-01T09:42:39+09:00",
  "note": "男子日本代表の試合。W杯予選(fibaId付き)の結果はGitHub Actionsが自動取得。強化試合は手動更新",
  "games": [
   {
@@ -90,7 +90,7 @@
    "comp": "FIBA W杯2027 アジア地区予選 2次ラウンド Window4",
    "venue": "TOYOTA ARENA TOKYO（東京・青海）※一般発売 8/1(土)18:00〜",
    "tv": "日本テレビ系列 / DAZN / TVer",
-   "result": null,
+   "result": "○ 123-70",
    "fibaId": "126960-JPN-QAT",
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/news/472/"
   },
