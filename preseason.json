@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-01T23:19:10.489Z",
+ "updated": "2026-09-02T23:19:39.103Z",
  "note": "B.LEAGUE PRE-SEASON GAME 2026（開幕前の練習試合）。各クラブの公式発表をまとめた記事から自動取得",
  "source": "https://note.com/ballbeats_jp/n/n1646da7ae95e",
  "count": 82,
@@ -654,7 +654,9 @@
    "arena": "岐阜メモリアルセンター で愛ドーム",
    "event": "AICHI CENTRAL CUP 2026",
    "link": "https://www.ctv.co.jp/aichicup2026/",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110450"
   },
   {
    "date": "2026-09-12",
@@ -690,7 +692,9 @@
    "arena": "おおきにアリーナ舞洲",
    "event": "",
    "link": "https://www.evessa.com/news/detail/id=24673",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "https://basketball.mb.softbank.jp/lives/110444"
   },
   {
    "date": "2026-09-12",
@@ -814,7 +818,9 @@
    "arena": "岐阜メモリアルセンター で愛ドーム",
    "event": "AICHI CENTRAL CUP 2026",
    "link": "https://www.ctv.co.jp/aichicup2026/",
-   "pre": true
+   "pre": true,
+   "tv": "バスケットLIVE",
+   "stream": "http://https://basketball.mb.softbank.jp/lives/110451"
   },
   {
    "date": "2026-09-12",
