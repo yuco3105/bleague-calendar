@@ -1,8 +1,8 @@
 {
- "updated": "2026-09-11T23:16:24.754Z",
+ "updated": "2026-09-12T23:03:12.932Z",
  "note": "B.LEAGUE PRE-SEASON GAME 2026（開幕前の練習試合）。各クラブの公式発表をまとめた記事から自動取得",
  "source": "https://note.com/ballbeats_jp/n/n1646da7ae95e",
- "count": 82,
+ "count": 83,
  "games": [
   {
    "date": "2026-08-22",
@@ -646,6 +646,18 @@
   },
   {
    "date": "2026-09-12",
+   "time": "11:00",
+   "home": "青森",
+   "away": "山形",
+   "homeLeague": "B.ONE-北",
+   "awayLeague": "B.ONE-北",
+   "arena": "ゼビオアリーナ仙台（仙台市アリーナ）",
+   "event": "第14回 TOHOKU CUP 2026 supported by りらいぶ",
+   "link": "https://www.89ers.jp/news/detail/id=21380",
+   "pre": true
+  },
+  {
+   "date": "2026-09-12",
    "time": "13:00",
    "home": "三河",
    "away": "三遠",
@@ -712,9 +724,9 @@
    "date": "2026-09-12",
    "time": "14:30",
    "home": "仙台",
-   "away": "岩手開催の勝者",
+   "away": "岩手",
    "homeLeague": "B.PREMIER-東",
-   "awayLeague": "",
+   "awayLeague": "B.ONE-北",
    "arena": "ゼビオアリーナ仙台",
    "event": "第14回 TOHOKU CUP 2026 supported by りらいぶ",
    "link": "https://www.89ers.jp/news/detail/id=21380",
@@ -826,9 +838,9 @@
    "date": "2026-09-12",
    "time": "18:00",
    "home": "秋田",
-   "away": "福島開催の勝者",
+   "away": "福島",
    "homeLeague": "B.PREMIER-東",
-   "awayLeague": "",
+   "awayLeague": "B.ONE-北",
    "arena": "ゼビオアリーナ仙台",
    "event": "第14回 TOHOKU CUP 2026 supported by りらいぶ",
    "link": "https://www.89ers.jp/news/detail/id=21380",
