@@ -1,8 +1,8 @@
 {
- "updated": "2026-09-23T23:42:43.895Z",
+ "updated": "2026-09-24T23:52:54.253Z",
  "note": "B.LEAGUE PRE-SEASON GAME 2026（開幕前の練習試合）。各クラブの公式発表をまとめた記事から自動取得",
  "source": "https://note.com/ballbeats_jp/n/n1646da7ae95e",
- "count": 82,
+ "count": 84,
  "games": [
   {
    "date": "2026-08-22",
@@ -1024,6 +1024,30 @@
    "arena": "シゲトーアリーナ岡山",
    "event": "",
    "link": "https://tryhoop.com/news/detail/id=50440",
+   "pre": true
+  },
+  {
+   "date": "2026-09-20",
+   "time": "19:05",
+   "home": "新潟アルビレックスBB",
+   "away": "しながわシティバスケットボールクラブ",
+   "homeLeague": "B.ONE-中",
+   "awayLeague": "B.NEXT",
+   "arena": "シティホールプラザ アオーレ長岡",
+   "event": "",
+   "link": "https://www.albirex.com/news/detail/id=24970",
+   "pre": true
+  },
+  {
+   "date": "2026-09-20",
+   "time": "19:05",
+   "home": "新潟",
+   "away": "品川",
+   "homeLeague": "",
+   "awayLeague": "",
+   "arena": "シティホールプラザ アオーレ長岡",
+   "event": "",
+   "link": "https://www.albirex.com/news/detail/id=24970",
    "pre": true
   }
  ]
