@@ -34,7 +34,9 @@ try {
 } catch (e) {
   pre = [];
 }
-const games = [...pre, ...season];
+let easl = [];
+try { easl = await loadGames("easl.json"); } catch (e) { console.log("EASL日程の取得失敗: " + e); }
+const games = [...pre, ...season, ...easl];
 
 // 今日の試合（なければ次の試合日）
 const today = ymd(new Date());
@@ -66,7 +68,8 @@ w.setPadding(14, 16, 12, 16);
 w.url = BASE_URL; // タップでアプリを開く
 
 const allPre = dayGames.length > 0 && dayGames.every((g) => g.pre);
-const head = w.addText(`🏀 ${title}  ${dayGames.length}試合${allPre ? "（プレシーズン）" : ""}`);
+const allEasl = dayGames.length > 0 && dayGames.every((g) => g.easl);
+const head = w.addText(`🏀 ${title}  ${dayGames.length}試合${allEasl ? "（EASL）" : allPre ? "（プレシーズン）" : ""}`);
 head.font = Font.heavySystemFont(13);
 head.textColor = GOLD;
 w.addSpacer(7);
@@ -80,10 +83,10 @@ for (const g of dayGames.slice(0, maxRows)) {
   row.centerAlignContent();
   const time = row.addText(g.time);
   time.font = Font.mediumSystemFont(11);
-  time.textColor = g.pre ? BLUE : GRAY; // プレシーズンは水色
+  time.textColor = g.pre || g.easl ? BLUE : GRAY;
   row.addSpacer(8);
   // 📺 はバスケットLIVEなどの配信予定あり
-  const txt = row.addText(`${isFav ? "⭐" : ""}${g.home} - ${g.away}${g.stream ? " 📺" : ""}`);
+  const txt = row.addText(`${isFav ? "⭐" : ""}${g.easl ? "EASL " : ""}${g.home} - ${g.away}${g.stream ? " 📺" : ""}`);
   txt.font = isFav ? Font.boldSystemFont(13) : Font.mediumSystemFont(13);
   txt.textColor = isFav ? GOLD : WHITE;
   txt.lineLimit = 1;

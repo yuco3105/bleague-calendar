@@ -454,9 +454,10 @@ function renderDateBar() {
     const n = dayGames.length;
     // 開幕前のプレシーズンだけの日は水色で「PRE」と出して本番と区別する
     const allPre = n > 0 && dayGames.every((g) => g.pre);
+    const allEasl = n > 0 && dayGames.every((g) => g.easl);
     const el = document.createElement('div');
     el.className = 'date-chip' + (d === current ? ' active' : '') + (d === t ? ' today' : '') + (allPre ? ' pre-day' : '');
-    el.innerHTML = `<span class="d">${f.m}/${f.d}</span><span class="w">(${f.w})</span><span class="n">${allPre ? 'PRE ' : ''}${n}試合</span>`;
+    el.innerHTML = `<span class="d">${f.m}/${f.d}</span><span class="w">(${f.w})</span><span class="n">${allEasl ? 'EASL ' : allPre ? 'PRE ' : ''}${n}試合</span>`;
     el.onclick = () => { current = d; render(); };
     bar.appendChild(el);
     if (d === current) activeEl = el;
@@ -478,9 +479,11 @@ function renderGames() {
       return a.time.localeCompare(b.time);
     });
   const preCount = games.filter((g) => g.pre).length;
+  const easlCount = games.filter((g) => g.easl).length;
   document.getElementById('dayHead').innerHTML =
     `<strong>${f.m}月${f.d}日(${f.w})</strong> ${games.length}試合`
-    + (preCount ? `<span class="pre-note">（うちプレシーズン ${preCount}）</span>` : '');
+    + (preCount ? `<span class="pre-note">（うちプレシーズン ${preCount}）</span>` : '')
+    + (easlCount ? `<span class="pre-note">（うちEASL ${easlCount}・日本時間）</span>` : '');
   list.innerHTML = '';
   if (!games.length) {
     list.innerHTML = '<div class="empty">この日の試合はありません</div>';
@@ -489,9 +492,9 @@ function renderGames() {
   for (const g of games) {
     const isFav = favs.includes(g.home) || favs.includes(g.away);
     const a = document.createElement('a');
-    a.className = 'card' + (isFav ? ' fav' : '') + (g.pre ? ' pre' : '');
+    a.className = 'card' + (isFav ? ' fav' : '') + (g.pre || g.easl ? ' pre' : '');
     // プレシーズンはリーグの試合ページが無いので、配信ページ→告知した各クラブの公式ページの順で飛ばす
-    a.href = g.pre
+    a.href = g.pre || g.easl
       ? (g.stream || g.link || 'https://www.bleague.jp/')
       : `https://www.bleague.jp/game_detail/?ScheduleKey=${g.id}&tab=1`;
     a.target = '_blank';
@@ -501,6 +504,7 @@ function renderGames() {
     const league = (s) => (s ? `<span class="team-league">${s}</span>` : '');
     a.innerHTML = `
       ${g.pre ? `<div class="pre-label"><span class="pre-tag">PRE</span>${g.tv ? `<span class="live-tag">📺 ${g.tv}</span>` : ''}${g.event || 'プレシーズンゲーム'}</div>` : ''}
+      ${g.easl ? '<div class="pre-label"><span class="pre-tag">EASL</span>東アジアスーパーリーグ・日本時間</div>' : ''}
       <div class="top"><span class="time">${g.time}<small>TIP OFF</small></span>${isFav ? '<span class="fav-mark">⭐ 推し</span>' : ''}</div>
       <div class="match">
         <span class="team home${favs.includes(g.home) ? ' faved' : ''}">${g.home}${g.pre ? league(g.homeLeague) : ''}</span>
@@ -684,11 +688,16 @@ async function fetchJson(url, tries = 3) {
   try {
     PRE = (await fetchJson('preseason.json')).games ?? [];
   } catch (e) { PRE = []; }
+  let easl = [];
+  try { easl = (await fetchJson('easl.json')).games ?? []; }
+  catch (e) {
+    document.getElementById('updatedAt').insertAdjacentText('afterend', ' EASL日程を取得できませんでした。再読み込みしてください。');
+  }
   // Bリーグ日程
   try {
     const data = await fetchJson('games.json');
     const season = data.games ?? data;
-    GAMES = [...PRE, ...season];
+    GAMES = [...PRE, ...season, ...easl];
     dates = [...new Set(GAMES.map((g) => g.date))].sort();
     // 推しクラブに出すのはリーグ戦の26クラブだけ（プレシーズンにはB.ONEや海外チームも出るため）
     clubs = [...new Set(season.flatMap((g) => [g.home, g.away]))].sort((a, b) => a.localeCompare(b, 'ja'));
