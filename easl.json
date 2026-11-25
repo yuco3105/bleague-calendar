@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T05:34:57.361Z",
+ "updated": "2026-11-25T04:37:05.428Z",
  "source": "https://www.easl.basketball/ja",
  "timezone": "Asia/Tokyo",
  "count": 18,
@@ -151,7 +151,7 @@
   {
    "id": "easl-cc7856eb-b040-11f1-a5f4-c93b3e361075",
    "date": "2027-01-13",
-   "time": "19:00",
+   "time": "19:10",
    "home": "A東京",
    "away": "TSGゴーストホークス",
    "arena": "Arena Tachikawa Tachihi",
@@ -163,7 +163,7 @@
   {
    "id": "easl-cc7952de-b040-11f1-9d80-350f9c1d66d1",
    "date": "2027-01-13",
-   "time": "19:00",
+   "time": "19:10",
    "home": "釜山KCCイージス",
    "away": "長崎",
    "arena": "Busan Sajik Gymnasium",
@@ -175,7 +175,7 @@
   {
    "id": "easl-cc7a5a56-b040-11f1-b05e-b161c86f682f",
    "date": "2027-01-13",
-   "time": "20:00",
+   "time": "20:10",
    "home": "アブラ・ウィーバーズ",
    "away": "琉球",
    "arena": "TBC",
@@ -187,7 +187,7 @@
   {
    "id": "easl-cc7a88f0-b040-11f1-be18-2da15d6d8880",
    "date": "2027-01-20",
-   "time": "19:00",
+   "time": "19:10",
    "home": "A東京",
    "away": "高陽ソノ・スカイガンナーズ",
    "arena": "Arena Tachikawa Tachihi",
@@ -199,7 +199,7 @@
   {
    "id": "easl-cc7b210d-b040-11f1-b6d1-15ed6e9c3545",
    "date": "2027-01-20",
-   "time": "19:00",
+   "time": "19:10",
    "home": "長崎",
    "away": "マカオ・ホウチョン",
    "arena": "Happiness Arena",
@@ -211,7 +211,7 @@
   {
    "id": "easl-cc7b4648-b040-11f1-aa92-71a0eedf5e14",
    "date": "2027-01-20",
-   "time": "19:30",
+   "time": "19:40",
    "home": "琉球",
    "away": "桃園パウイアン・パイロッツ",
    "arena": "Okinawa Suntory Arena",
