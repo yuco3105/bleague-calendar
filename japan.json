@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-01T09:42:39+09:00",
+ "updated": "2026-11-27T12:42:19+09:00",
  "note": "男子日本代表の試合。W杯予選(fibaId付き)の結果はGitHub Actionsが自動取得。強化試合は手動更新",
  "games": [
   {
@@ -102,7 +102,7 @@
    "comp": "FIBA W杯2027 アジア地区予選 2次ラウンド Window5",
    "venue": "会場未発表",
    "tv": "",
-   "result": null,
+   "result": "○ 86-82",
    "fibaId": "126961-LBN-JPN",
    "link": "https://fibaworldcup2027-asianqualifiers.japanbasketball.jp/"
   },
